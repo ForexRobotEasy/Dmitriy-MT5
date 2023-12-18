@@ -1,0 +1,126 @@
+mql5
+//+------------------------------------------------------------------+
+//|                                              Dmitriy_MT5.mq5     |
+//|                            Copyright 2021, Forex Robot Easy Team |
+//|                        Developer's site: forexroboteasy.com      |
+//+------------------------------------------------------------------+
+#property copyright 'Copyright 2021, Forex Robot Easy Team'
+#property link      'forexroboteasy.com'
+#property version   '1.00'
+#property strict
+
+//+------------------------------------------------------------------+
+//| Global variables                                                  |
+//+------------------------------------------------------------------+
+int MagicNumber = 12345;   // Unique identifier for the EA
+int Slippage = 5;          // Maximum allowed slippage in points
+
+//+------------------------------------------------------------------+
+//| Expert initialization function                                   |
+//+------------------------------------------------------------------+
+int OnInit()
+{
+    // Check if the EA is attached to the correct chart
+    if (ChartPeriod() != PERIOD_H1)
+    {
+        Print('Please attach the EA to a H1 chart.');
+        return INIT_FAILED;
+    }
+    
+    // Display a message when the EA is initialized successfully
+    Print('Dmitriy MT5 initialized successfully.');
+    
+    return INIT_SUCCEEDED;
+}
+
+//+------------------------------------------------------------------+
+//| Expert deinitialization function                                 |
+//+------------------------------------------------------------------+
+void OnDeinit(const int reason)
+{
+    // Display a message when the EA is deinitialized
+    Print('Dmitriy MT5 deinitialized.');
+}
+
+//+------------------------------------------------------------------+
+//| Expert tick function                                              |
+//+------------------------------------------------------------------+
+void OnTick()
+{
+    // Calculate the high price fluctuations using advanced mathematical calculations
+    double priceFluctuations = CalculatePriceFluctuations();
+    
+    // Check if the price fluctuations are significant
+    if (priceFluctuations > 0.001)
+    {
+        // Open pending orders using BuyStop and SellStop
+        bool buyOrderOpened = OpenBuyStopOrder(priceFluctuations);
+        bool sellOrderOpened = OpenSellStopOrder(priceFluctuations);
+        
+        // Check if the pending orders are opened successfully
+        if (buyOrderOpened || sellOrderOpened)
+        {
+            // Perform additional trading actions
+            PerformTradingActions();
+        }
+    }
+}
+
+//+------------------------------------------------------------------+
+//| Calculate the high price fluctuations using advanced calculations |
+//+------------------------------------------------------------------+
+double CalculatePriceFluctuations()
+{
+    // Perform advanced mathematical calculations to identify high price fluctuations
+    double priceFluctuations = 0.005; // Placeholder value, replace with actual calculation
+    
+    return priceFluctuations;
+}
+
+//+------------------------------------------------------------------+
+//| Open a BuyStop pending order                                      |
+//+------------------------------------------------------------------+
+bool OpenBuyStopOrder(const double priceFluctuations)
+{
+    // Check if favorable market conditions are detected
+    if (priceFluctuations > 0.003)
+    {
+        // Perform necessary actions to open a BuyStop pending order
+        // ...
+        
+        return true; // Placeholder value, replace with actual order opening code
+    }
+    
+    return false;
+}
+
+//+------------------------------------------------------------------+
+//| Open a SellStop pending order                                     |
+//+------------------------------------------------------------------+
+bool OpenSellStopOrder(const double priceFluctuations)
+{
+    // Check if favorable market conditions are detected
+    if (priceFluctuations > 0.004)
+    {
+        // Perform necessary actions to open a SellStop pending order
+        // ...
+        
+        return true; // Placeholder value, replace with actual order opening code
+    }
+    
+    return false;
+}
+
+//+------------------------------------------------------------------+
+//| Perform additional trading actions                                |
+//+------------------------------------------------------------------+
+void PerformTradingActions()
+{
+    // Perform additional trading actions based on the opened pending orders
+    // ...
+    
+    // Display a message when the trading actions are performed
+    Print('Additional trading actions performed.');
+}
+
+//+------------------------------------------------------------------+
